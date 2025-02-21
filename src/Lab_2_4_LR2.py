@@ -3,6 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import scipy.stats as stats
 import seaborn as sns
+from sklearn.linear_model import LinearRegression
 
 
 class LinearRegressor:
@@ -114,6 +115,7 @@ class LinearRegressor:
             if epoch % 1000 == 0:
                 mse = (1 / m) * np.sum(error ** 2)
                 print(f"Epoch {epoch}: MSE = {mse}")
+
 
     def predict(self, X):
         """
