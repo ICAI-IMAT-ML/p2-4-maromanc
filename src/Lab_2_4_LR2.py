@@ -65,16 +65,17 @@ class LinearRegressor:
             None: Modifies the model's coefficients and intercept in-place.
         """
         # Replace this code with the code you did in the previous laboratory session
-        n, m = X.shape #para saber el numero de observaciones y el numero de variables independientes
-        matriz_x = np.hstack((np.ones((n, 1)), X)) # ajusto las matrices con la columna de unos 
-       
-        XTX = matriz_x.T @ matriz_x #Matriz X^T X
-        XTX_inv = np.linalg.inv(XTX) #Inversa de (X^T X)
-        XTy = matriz_x.T @ y # X^T y
-        w = XTX_inv @ XTy # cálculo de w
+        
+        XtX = X.T @ X #Matriz X^T X
+        # XTX_inv = np.linalg.inv(XTX) #Inversa de (X^T X)
+        XTX_inv = np.linalg.inv(XtX)
+        XTy = XTX_inv @ X.T # X^T y
+        w = XTy @ y # cálculo de w
 
         self.intercept = w[0]
-        self.coefficients = w[1:].flatten() 
+        self.coefficients = w[1:] 
+
+
 
     def fit_gradient_descent(self, X, y, learning_rate=0.01, iterations=1000):
         """
